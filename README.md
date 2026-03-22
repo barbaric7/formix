@@ -1,6 +1,6 @@
 # Formix AI
 
-AutoForm AI is an automated desktop application engineered to programmatically navigate, complete, and submit multi-page Google Forms. Designed primarily to streamline repetitive academic and institutional workflows, the application integrates browser automation with large language models to evaluate and answer complex forms in real-time.
+Formix AI is an automated desktop application engineered to programmatically navigate, complete, and submit multi-page Google Forms. Designed primarily to streamline repetitive academic and institutional workflows, the application integrates browser automation with large language models to evaluate and answer complex forms in real-time.
 
 ## Technical Stack
 
