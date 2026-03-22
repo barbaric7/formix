@@ -6,13 +6,11 @@ def extract_questions(driver):
 
     for block in question_blocks:
         try:
-            # Check if block contains radio buttons
             radios = block.find_elements(By.XPATH, ".//div[@role='radio']")
 
             if len(radios) == 0:
                 continue
 
-            # Safely grab the heading without strictly requiring a <span>
             try:
                 question_text = block.find_element(
                     By.XPATH, ".//div[@role='heading']"

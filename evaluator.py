@@ -1,6 +1,5 @@
 from llm_engine import ask_model
 
-# MAX SPEED MODE: Only use one highly accurate, non-rate-limited model
 PRIMARY_MODEL = "openai/gpt-4o-mini"
 
 def get_final_answer(question, options, user_data):
@@ -12,7 +11,6 @@ def get_final_answer(question, options, user_data):
 
     print(f"⚡ Fast-Solving with {PRIMARY_MODEL.split('/')[1]}...")
     
-    # Make a single, fast API call
     answer = ask_model(PRIMARY_MODEL, question, options, api_key)
     
     if answer:

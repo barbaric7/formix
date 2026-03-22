@@ -13,13 +13,11 @@ def fill_student_details(driver, user_data):
                 time.sleep(0.5)
                 driver.execute_script("arguments[0].click();", element)
 
-            # TEXT INPUTS
             if any(kw in text for kw in ["email", "full name", "roll number", "prn"]):
                 input_box = block.find_element(By.XPATH, ".//input[@type='text' or @type='email']")
                 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", input_box)
                 input_box.clear()
                 
-                # Use user_data from GUI instead of config
                 if "email" in text:
                     input_box.send_keys(user_data["email"])
                     print("Filled Email")
@@ -59,8 +57,6 @@ def fill_student_details(driver, user_data):
 
         except:
             continue
-
-# ... (Keep your existing click_option and submit_form functions here below) ...
 
 def click_option(driver, final_answer, options, elements):
     clean_answer = final_answer.strip().lower().replace(".", "")

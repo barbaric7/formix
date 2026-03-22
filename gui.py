@@ -7,13 +7,13 @@ from app import run_automation, setup_browser_login
 
 
 # ─────────────────────────────────────────────
-#  DESIGN TOKENS  (single source of truth)
+#  DESIGN TOKENS 
 # ─────────────────────────────────────────────
 COLORS = {
     # Backgrounds
-    "bg_root":        "#0F1117",   # deepest base
-    "bg_card":        "#16181F",   # card surfaces
-    "bg_input":       "#1C1F2A",   # input fields
+    "bg_root":        "#0F1117",  
+    "bg_card":        "#16181F",  
+    "bg_input":       "#1C1F2A",   
     "bg_tab_active":  "#1C1F2A",
     "bg_tab_idle":    "#0F1117",
 
@@ -182,8 +182,8 @@ class FormAutomationApp(ctk.CTk):
         ctk.set_default_color_theme("blue")
 
         self.title("AutoForm AI")
-        self.geometry("700x650") # Reduced height to fit laptops perfectly
-        self.resizable(True, True) # Allows you to drag the corners and resize!
+        self.geometry("700x650") 
+        self.resizable(True, True) 
         self.configure(fg_color=COLORS["bg_root"])
 
         self.settings_file = "user_settings.json"
@@ -253,7 +253,6 @@ class FormAutomationApp(ctk.CTk):
         self.tabview.add("Dashboard")
         self.tabview.add("Profile")
 
-        # Style the tab container
         self.tabview._segmented_button.configure(
             font=ctk.CTkFont(family=FONT["family_ui"], size=12, weight="bold")
         )
@@ -276,7 +275,6 @@ class FormAutomationApp(ctk.CTk):
         self.form_link_input = make_entry(url_inner, placeholder="https://docs.google.com/forms/d/...", height=42)
         self.form_link_input.pack(fill="x", pady=(4, 0))
 
-        # --- NEW: AUTO-SUBMIT CHECKBOX ---
         self.auto_submit_var = ctk.BooleanVar(value=self.user_data.get("auto_submit", False))
         self.auto_submit_cb = ctk.CTkCheckBox(
             url_inner,
@@ -407,7 +405,6 @@ class FormAutomationApp(ctk.CTk):
             lambda p: make_combo(p, ["Edge"], default=self.user_data.get("browser", "Edge")),
         )
         
-        # --- UPDATED: SINGLE API KEY INPUT ---
         self.openrouter_api_input = labeled_field(
             ai_inner, "OPENROUTER API KEY",
             lambda p: make_entry(p, placeholder="sk-or-v1-...", show="*", default=self.user_data.get("openrouter_api_key", "")),
@@ -429,7 +426,6 @@ class FormAutomationApp(ctk.CTk):
 
         make_divider(per_inner)
 
-        # Two-column row: Roll + PRN
         row_a = ctk.CTkFrame(per_inner, fg_color="transparent")
         row_a.pack(fill="x")
         row_a.columnconfigure(0, weight=1)
@@ -455,7 +451,6 @@ class FormAutomationApp(ctk.CTk):
 
         make_divider(per_inner)
 
-        # Two-column row: Year + Branch
         row_b = ctk.CTkFrame(per_inner, fg_color="transparent")
         row_b.pack(fill="x")
         row_b.columnconfigure(0, weight=1)
@@ -508,7 +503,7 @@ class FormAutomationApp(ctk.CTk):
 
     def save_settings(self):
         data = {
-            "openrouter_api_key": self.openrouter_api_input.get(), # --- SINGLE KEY ---
+            "openrouter_api_key": self.openrouter_api_input.get(), 
             "email":            self.email_input.get(),
             "full_name":        self.name_input.get(),
             "roll_number":      self.roll_input.get(),
@@ -517,7 +512,7 @@ class FormAutomationApp(ctk.CTk):
             "year":             self.year_input.get(),
             "branch_division":  self.branch_input.get(),
             "browser":          self.browser_input.get(),
-            "auto_submit":      self.auto_submit_var.get(), # --- AUTO-SUBMIT STATE ---
+            "auto_submit":      self.auto_submit_var.get(), 
         }
         with open(self.settings_file, "w") as f:
             json.dump(data, f, indent=2)
@@ -565,7 +560,6 @@ class FormAutomationApp(ctk.CTk):
             print("❌  Please save your profile first.\n")
             return
             
-        # --- PASS DYNAMIC STATES ---
         self.user_data["form_url"] = form_url
         self.user_data["auto_submit"] = self.auto_submit_var.get()
         

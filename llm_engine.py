@@ -30,12 +30,11 @@ Return only the exact option text.
                 "model": model,
                 "messages": [{"role": "user", "content": prompt}],
             },
-            timeout=30, # Reduced timeout so it doesn't hang forever
+            timeout=30, 
         )
 
         data = response.json()
 
-        # --- NEW: DETAILED ERROR LOGGING ---
         if response.status_code != 200:
             print(f"❌ API HTTP Error {response.status_code}: {response.text}")
             return None

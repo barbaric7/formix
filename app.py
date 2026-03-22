@@ -37,7 +37,7 @@ def setup_driver(browser_choice):
         driver = webdriver.Chrome(options=options)
     return driver
 
-# --- RESTORED: DEDICATED LOGIN SETUP FUNCTION ---
+
 def setup_browser_login(user_data):
     print("🌐 Launching browser for initial setup...")
     browser_choice = user_data.get("browser", "Chrome")
@@ -70,7 +70,7 @@ def setup_browser_login(user_data):
     print("✅ Profile is safely unlocked.")
     print("👉 You can now click 'Start Automation'.")
 
-# --- UPDATED: BULLETPROOF SCROLLING ---
+
 def slow_scroll_to_bottom(driver):
     print("Scrolling to load elements...")
     for _ in range(8): 
@@ -78,7 +78,7 @@ def slow_scroll_to_bottom(driver):
         time.sleep(0.5)
     print("✅ Reached the bottom.")
 
-# --- NEW: HANDLE MULTI-PAGE FORMS ---
+
 def click_next_page(driver):
     try:
         spans = driver.find_elements(By.XPATH, "//span[contains(text(), 'Next')]")
