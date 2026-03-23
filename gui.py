@@ -484,7 +484,7 @@ class FormAutomationApp(ctk.CTk):
             "2. Sign in / create a free account\n"
             "3. Navigate to Keys → Create Key\n"
             "4. Copy the key starting with  sk-or-v1-",
-            url="https://github.com/Om-Kasar/AutoFormAI#getting-your-openrouter-api-key",
+            url="https://github.com/barbaric7/Formix-AI/blob/main/README.md",
         )
 
         # --- API key entry with eye/peek toggle ---
@@ -586,7 +586,6 @@ class FormAutomationApp(ctk.CTk):
         self.branch_input = make_combo(lf_branch, branch_options, default=self.user_data.get("branch_division", "CSSE-B"))
         self.branch_input.pack(fill="x")
 
-        # ── Required fields notice ─────────────
         ctk.CTkLabel(
             scroll,
             text="  * Required fields",
@@ -620,7 +619,6 @@ class FormAutomationApp(ctk.CTk):
         return {}
 
     def save_settings(self):
-        # ── Required field validation ──────────
         required = {
             "OpenRouter API Key": self.openrouter_api_input.get().strip(),
             "Email Address":      self.email_input.get().strip(),
@@ -631,7 +629,6 @@ class FormAutomationApp(ctk.CTk):
         }
         missing = [k for k, v in required.items() if not v]
         if missing:
-            # Flash save button red and show which fields are missing
             self.save_btn.configure(
                 fg_color=COLORS["danger"],
                 text=f"⚠  Fill required: {', '.join(missing[:2])}{'…' if len(missing) > 2 else ''}",
@@ -658,7 +655,6 @@ class FormAutomationApp(ctk.CTk):
             json.dump(data, f, indent=2)
         self.user_data = data
 
-        # ── Unlock Dashboard tab if this was first-time setup ──
         if getattr(self, "_dashboard_locked", False):
             try:
                 self.tabview._segmented_button.configure(state="normal")
